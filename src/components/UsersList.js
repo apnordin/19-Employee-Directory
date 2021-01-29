@@ -1,9 +1,13 @@
 import React from "react";
 import Table from 'react-bootstrap/Table'
 
-function UsersList(props, bordered) {
+//Reference https://react-bootstrap.github.io/components/table/
 
-    //Reference https://react-bootstrap.github.io/components/table/
+function UsersList(props) {
+
+    console.log('TABLE!!! props.userResults[0].name :', props.userResults[0].name.first);
+    const employee = props.userResults[0];
+    
 
     return (
         <Table striped bordered hover className="userTable">
@@ -18,11 +22,11 @@ function UsersList(props, bordered) {
             </thead>
             <tbody>
                 <tr>
-                <td>placeholder</td>
-                <td>Test Name</td>
-                <td>919-555-5555</td>
-                <td>test@gmail.com</td>
-                <td>08-01-1992</td>
+                    <td>placeholder</td>
+                    <td>{employee.name.first} {employee.name.last}</td>
+                    <td>919-555-5555</td>
+                    <td>test@gmail.com</td>
+                    <td>08-01-1992</td>
                 </tr>
             </tbody>
         </Table>
