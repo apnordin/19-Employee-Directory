@@ -8,7 +8,7 @@ function UsersList(props) {
     console.log(props.userResults)
     
     return (
-        <Table striped bordered hover className="userTable">
+        <Table striped hover className="userTable text-center">
             <thead>
                 <tr>
                     <th>Image</th>
