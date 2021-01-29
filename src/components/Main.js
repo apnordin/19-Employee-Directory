@@ -26,11 +26,8 @@ class Main extends React.Component {
 
     handleInputChange = event => {
         console.log('!!! NEW INPUT CHANGE')
-        console.log('this.state.result: ', this.state.result)
-        console.log('this.state.rememberedresults: ', this.state.rememberedResults)
-        // Reset the results to rememberedResults, as a "checkpoint" so you don't lose everything when you start searching. If this is your first time typing, it will be empty, which is fine
-    
-        const searcher = new FuzzySearch(this.state.result, ['name.first', 'name.last'], {caseSensitive: false,})
+
+        const searcher = new FuzzySearch(this.state.rememberedResults, ['name.first', 'name.last'], {caseSensitive: false,})
 
         const refinedResult = searcher.search(event.target.value);
 
@@ -47,8 +44,9 @@ class Main extends React.Component {
         return(
             <div>
             <Header
-                userResults={this.state.result}
+                // userResults={this.state.result}
                 handleInputChange={this.handleInputChange}
+                // remembered={this.state.rememberedResults}
             />
             <UsersList
                 userResults={this.state.result}
