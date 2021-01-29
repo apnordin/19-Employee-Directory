@@ -38,10 +38,6 @@ class Main extends React.Component {
         this.setState({ result: refinedResult})
     }
 
-    handleSorting = event => {
-        
-    }
-
     render() {
         return(
             <div>
