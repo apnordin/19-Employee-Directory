@@ -5,10 +5,9 @@ import Table from 'react-bootstrap/Table'
 
 function UsersList(props) {
 
-    console.log('TABLE!!! props.userResults[0].name :', props.userResults[0].name.first);
     const employee = props.userResults[0];
+    console.log('employee: ', employee);
     
-
     return (
         <Table striped bordered hover className="userTable">
             <thead>
@@ -22,11 +21,11 @@ function UsersList(props) {
             </thead>
             <tbody>
                 <tr>
-                    <td>placeholder</td>
+                    <td><img className="employeeImg" alt="employeeimg" src={employee.picture.large} /></td>
                     <td>{employee.name.first} {employee.name.last}</td>
-                    <td>919-555-5555</td>
-                    <td>test@gmail.com</td>
-                    <td>08-01-1992</td>
+                    <td>{employee.phone}</td>
+                    <td>{employee.email}</td>
+                    <td>{employee.dob.date.slice(0,10)}</td>
                 </tr>
             </tbody>
         </Table>
