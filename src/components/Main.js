@@ -29,7 +29,7 @@ class Main extends React.Component {
     render() {
         return(
             <div>
-            <Header />
+            <Header userResults={this.state.result}/>
             <UsersList userResults={this.state.result} />
             </div>
         )

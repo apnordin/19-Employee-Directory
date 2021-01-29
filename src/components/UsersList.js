@@ -5,7 +5,7 @@ import Table from 'react-bootstrap/Table'
 
 function UsersList(props) {
 
-    console.log(props.userResults)
+    // console.log(props.userResults)
     
     return (
         <Table striped hover className="userTable text-center">

@@ -1,6 +1,20 @@
 import React from "react";
+import FuzzySearch from "fuzzy-search";
 
-function Header() {
+
+
+function Header(props) {
+
+    const employees = props.userResults;
+    console.log('EMPLOYEES: ', employees);
+
+    const searcher = new FuzzySearch(employees, ['name.first', 'name.last'], {caseSensitive: false,
+    })
+
+    const result = searcher.search('a');
+
+    console.log('SEARCH RESULTS: ', result);
+
     return(
     <div className="bg-light">
         <div className="text-center header mb-2">
