@@ -10,7 +10,15 @@ class Main extends React.Component {
         search: ''
     }
 
-   
+    //When the component mounts, get a list of 20 random employees
+    componentDidMount() {
+        API.getUsers()
+        .then(res => {
+            this.setState({ result: res.data.results });
+            console.log(this.state.result);
+        })
+        .catch(err => console.log(err));
+    }
 
     render() {
         return(
