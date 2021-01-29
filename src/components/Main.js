@@ -10,7 +10,8 @@ class Main extends React.Component {
         result: [],
         search: "",
         refinedResult: [],
-        rememberedResults: []
+        rememberedResults: [],
+        sort: ""
     }
 
     //When the component mounts, get a list of 20 random employees
@@ -38,6 +39,16 @@ class Main extends React.Component {
         this.setState({ result: refinedResult})
     }
 
+    handleSortDesc = event => {
+        this.setState({ sort: "desc" })
+        console.log('STATE SET TO: ', this.state)
+    }
+
+    handleSortAsc = event => {
+        this.setState({ sort: "asc"})
+        console.log('SET STATE TO: ', this.state)
+    }
+
     render() {
         return(
             <div>
@@ -47,6 +58,9 @@ class Main extends React.Component {
                 // remembered={this.state.rememberedResults}
             />
             <UsersList
+                handleSortAsc={this.handleSortAsc}
+                handleSortDesc={this.handleSortDesc}
+                sortState={this.state.sort}
                 userResults={this.state.result}
             />
             </div>

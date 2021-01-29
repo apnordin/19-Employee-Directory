@@ -1,24 +1,45 @@
 import React from "react";
 import Table from 'react-bootstrap/Table'
+const downCarrot = require("./carrotDown.png");
+const upCarrot = require("./carrotUp.png")
 
 //Reference https://react-bootstrap.github.io/components/table/
 
 function UsersList(props) {
 
-    props.userResults.sort(function(a,b){
-        var x = a.name.last.toLowerCase();
-        var y = b.name.last.toLowerCase();
-        if (x < y) {return -1;}
-        if (x > y) {return 1;}
-        return 0;
-    })
+    console.log(props.sortState);
+    
+    if (props.sortState === "asc") {
+        props.userResults.sort(function(a,b){
+            var x = a.name.last.toLowerCase();
+            var y = b.name.last.toLowerCase();
+            if (x < y) {return -1;}
+            if (x > y) {return 1;}
+            return 0;
+        })
+    } if (props.sortState === "desc") {
+        props.userResults.sort(function(a,b) {
+            var x = a.name.last.toLowerCase();
+            var y = b.name.last.toLowerCase();
+            if (x > y) {return -1;}
+            if (x < y) {return 1;}
+            return 0;
+        })
+    }
 
     return (
+        <div>
+        
         <Table striped hover className="userTable text-center">
             <thead>
                 <tr>
                     <th>Image</th>
-                    <th><button variant="primary">Down</button>Name<button variant="primary">Up</button></th>
+                    <th>Name
+                        <input type="image" src={upCarrot.default} alt="up" className="btn btn-light btn-sm carrot" onClick={props.handleSortAsc}>
+                        </input>
+                        <input type="image" src={downCarrot.default} alt="down" className="btn btn-light btn-sm carrot" onClick={props.handleSortDesc}>
+                        </input>
+                    </th>
                     <th>Phone</th>
                     <th>Email</th>
                     <th>DOB</th>
@@ -36,6 +57,7 @@ function UsersList(props) {
                 ))}
             </tbody>
         </Table>
+        </div>
     );
 }
 
