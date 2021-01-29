@@ -5,15 +5,15 @@ import FuzzySearch from "fuzzy-search";
 
 function Header(props) {
 
-    const employees = props.userResults;
-    console.log('EMPLOYEES: ', employees);
+    // const employees = props.userResults;
+    // // console.log('EMPLOYEES: ', employees);
 
-    const searcher = new FuzzySearch(employees, ['name.first', 'name.last'], {caseSensitive: false,
-    })
+    // const searcher = new FuzzySearch(employees, ['name.first', 'name.last'], {caseSensitive: false,
+    // })
 
-    const result = searcher.search('a');
+    // const result = searcher.search(event.target.value);
 
-    console.log('SEARCH RESULTS: ', result);
+    // console.log('SEARCH RESULTS: ', result);
 
     return(
     <div className="bg-light">
@@ -27,11 +27,20 @@ function Header(props) {
         </div>
         <div className="input-group">
             <div className="form-outline mb-2 w-15 mx-auto">
-                <input type="search" className="form-control" placeholder="Search" />
+                <input
+                value={props.search}
+                onChange={props.handleInputChange}
+                type="search"
+                className="form-control"
+                placeholder="Search"
+                id="employeeName"
+                />
+               
             </div>
         </div>
     </div>
     )
 }
+
 
 export default Header;
