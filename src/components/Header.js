@@ -1,7 +1,4 @@
 import React from "react";
-import FuzzySearch from "fuzzy-search";
-
-
 
 function Header(props) {
 

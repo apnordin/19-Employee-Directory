@@ -9,6 +9,8 @@ class Main extends React.Component {
     state = {
         result: [],
         search: "",
+        refinedResult: [],
+        rememberedResults: []
     }
 
     //When the component mounts, get a list of 20 random employees
@@ -16,26 +18,29 @@ class Main extends React.Component {
         API.getUsers()
         .then(res => {
             this.setState({ result: res.data.results });
+            this.setState({ rememberedResults: res.data.results })
             // console.log('this.state.result: ', this.state.result);
         })
         .catch(err => console.log(err));
     }
 
     handleInputChange = event => {
+        console.log('!!! NEW INPUT CHANGE')
+        console.log('this.state.result: ', this.state.result)
+        console.log('this.state.rememberedresults: ', this.state.rememberedResults)
+        // Reset the results to rememberedResults, as a "checkpoint" so you don't lose everything when you start searching. If this is your first time typing, it will be empty, which is fine
+    
+        const searcher = new FuzzySearch(this.state.result, ['name.first', 'name.last'], {caseSensitive: false,})
 
-        const employees = this.state.result;
+        const refinedResult = searcher.search(event.target.value);
 
-        // console.log('EMPLOYEES: ', employees);
+        console.log('SEARCH RESULTS: ', refinedResult);
 
-        const searcher = new FuzzySearch(employees, ['name.first', 'name.last'], {caseSensitive: false,})
+        //Now set the state of search to these results as well
+        this.setState({ search: refinedResult });
+        // Set the state of result to the refined results to show only those options. But now if you backspace, result only includes refinedResult... which is why we have saved remembedResult!
+        this.setState({ result: refinedResult})
 
-        const result = searcher.search(event.target.value);
-
-        console.log('SEARCH RESULTS: ', result);
-
-        console.log('is this being called???')
-        this.setState({ search: event.target.value });
-        console.log('event.target !!!!!!: ', event.target.value)
     }
 
     render() {
