@@ -5,7 +5,8 @@ import Table from 'react-bootstrap/Table'
 
 function UsersList(props) {
 
-    // console.log(props.userResults)
+    // console.log('PROPS', props);
+    
     
     return (
         <Table striped hover className="userTable text-center">
@@ -20,7 +21,7 @@ function UsersList(props) {
             </thead>
             <tbody>
                 {props.userResults.map(result => (
-                    <tr>
+                    <tr key = {result.login.md5}>
                         <td><img className="employeeImg" alt="employeeImg" src={result.picture.large} /></td>
                         <td>{result.name.first} {result.name.last}</td>
                         <td>{result.phone}</td>

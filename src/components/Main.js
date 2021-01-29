@@ -25,7 +25,6 @@ class Main extends React.Component {
     }
 
     handleInputChange = event => {
-        console.log('!!! NEW INPUT CHANGE')
 
         const searcher = new FuzzySearch(this.state.rememberedResults, ['name.first', 'name.last'], {caseSensitive: false,})
 
@@ -35,9 +34,12 @@ class Main extends React.Component {
 
         //Now set the state of search to these results as well
         this.setState({ search: refinedResult });
-        // Set the state of result to the refined results to show only those options. But now if you backspace, result only includes refinedResult... which is why we have saved remembedResult!
+        // Set the state of result to the refined results to show only those options
         this.setState({ result: refinedResult})
+    }
 
+    handleSorting = event => {
+        
     }
 
     render() {
